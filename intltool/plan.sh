@@ -14,13 +14,14 @@ pkg_bin_dirs=(bin)
 
 do_prepare() {
   eval "$(perl -I"$(pkg_path_for core/local-lib)/lib/perl5" -Mlocal::lib="$(pkg_path_for core/local-lib)")"
-  eval "$(perl -Mlocal::lib="${pkg_prefix}/lib")"
-  env LD_LIBRARY_PATH="$(pkg_path_for core/expat)/lib:${LD_LIBRARY_PATH}" \
-    cpanm XML::Parser --configure-args="EXPATLIBPATH=$(pkg_path_for core/expat)/lib export EXPATINCPATH=$(pkg_path_for core/expat)/include"
-  # make intltool work with perl 5.26+
-  patch intltool-update.in "${PLAN_CONTEXT}/intltool-0.51.0-perl-5.26.patch"
-}
+  eval "$(perl -Mlocal::lib="${pkg_prefix}")"
 
-do_install() {
-  do_default_install
+  LD_LIBRARY_PATH="$(pkg_path_for core/expat)/lib:${LD_LIBRARY_PATH}"
+  export LD_LIBRARY_PATH
+  EXPATLIBPATH=$(pkg_path_for core/expat)/lib
+  export EXPATLIBPATH
+  EXPATINCPATH=$(pkg_path_for core/expat)/include
+  export EXPATINCPATH
+
+  cpanm XML::Parser
 }
