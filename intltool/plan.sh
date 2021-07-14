@@ -7,8 +7,8 @@ pkg_description="intltool is a set of tools to centralize translation of many di
 pkg_upstream_url="https://freedesktop.org/wiki/Software/intltool/"
 pkg_source="https://launchpad.net/intltool/trunk/0.51.0/+download/${pkg_name}-${pkg_version}.tar.gz"
 pkg_shasum="67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
-pkg_deps=(core/glibc)
-pkg_build_deps=(core/make core/gcc core/patch core/perl core/local-lib core/cpanminus core/expat)
+pkg_deps=(core/glibc core/perl)
+pkg_build_deps=(core/make core/gcc core/patch core/local-lib core/cpanminus core/expat)
 pkg_lib_dirs=(lib)
 pkg_bin_dirs=(bin)
 
